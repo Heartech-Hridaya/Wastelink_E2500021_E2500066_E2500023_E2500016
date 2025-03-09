@@ -1,0 +1,115 @@
+To set up your database on Replit without changing your existing code, follow these steps:
+
+1. Set Up a MySQL Database on Replit
+Replit doesn’t support MySQL natively, so you have two options:
+
+Use SQLite (since Replit has built-in support for it).
+Use an external MySQL database (like db4free.net or Clever Cloud).
+Use PHPMyAdmin with a local server (if you decide to work locally).
+If you want localhost, I recommend using XAMPP or Laragon on your PC. You can then access phpMyAdmin to manage your database.
+
+2. Create a Database and Table
+For MySQL (phpMyAdmin), create a database (e.g., waste_management) and tables:
+
+sql
+Copy
+Edit
+CREATE DATABASE waste_management;
+
+USE waste_management;
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE reports (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(100),
+    location TEXT,
+    message TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE contacts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(100),
+    subject VARCHAR(255),
+    message TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+3. Connect PHP to the Database
+Create a db.php file for database connection:
+
+php
+Copy
+Edit
+<?php
+$servername = "localhost";
+$username = "root";  // Default user for localhost
+$password = "";      // No password for localhost by default
+$dbname = "waste_management";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>
+4. Insert Data (Signup, Report Waste, Contact)
+Modify your form processing scripts (signup.php, report.php, contact.php):
+
+Signup Example
+php
+Copy
+Edit
+<?php
+include 'db.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+
+    $sql = "INSERT INTO users (username, email, password_hash) VALUES ('$username', '$email', '$password')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Signup successful!";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
+?>
+5. Display Stored Data
+Create a view_data.php page to show stored records:
+
+php
+Copy
+Edit
+<?php
+include 'db.php';
+
+$sql = "SELECT * FROM reports";
+$result = $conn->query($sql);
+
+echo "<h2>Waste Reports</h2>";
+echo "<table border='1'><tr><th>ID</th><th>Name</th><th>Email</th><th>Location</th><th>Message</th><th>Created At</th></tr>";
+
+while ($row = $result->fetch_assoc()) {
+    echo "<tr><td>" . $row["id"] . "</td><td>" . $row["name"] . "</td><td>" . $row["email"] . "</td><td>" . $row["location"] . "</td><td>" . $row["message"] . "</td><td>" . $row["created_at"] . "</td></tr>";
+}
+
+echo "</table>";
+
+$conn->close();
+?>
+6. Run Everything
+If using Replit, you need to configure an external MySQL database.
+If using localhost, install XAMPP or Laragon, run Apache and MySQL, and visit http://localhost/phpmyadmin to check the database.
+Open view_data.php to see the stored waste reports.
