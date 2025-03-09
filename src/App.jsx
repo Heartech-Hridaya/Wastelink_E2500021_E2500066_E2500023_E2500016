@@ -2,7 +2,7 @@ import Hero from "./components/Hero";
 import "./App.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Suspense, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Login from "./components/Login";
 import Header from "./components/Header";
 import HowItWorks from "./components/HowItWorks";
@@ -12,45 +12,53 @@ import Impact from "./components/Impact";
 import Testimonials from "./components/Testimonials";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import { Route, Routes} from 'react-router-dom';
+import { Route, Routes, Navigate, useLocation } from 'react-router-dom';
 
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
+  const [user, setUser] = useState(null);
+  const location = useLocation();
+
+  // Check if user is logged in
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem('user');
+    if (loggedInUser) {
+      setUser(JSON.parse(loggedInUser));
+    }
+  }, [location]);
 
   return (
     <>
-    <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/Hero" element={<Hero />} />
-
-    </Routes>
-      <main  className="overflow-x-hidden bg-black">
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/Hero" element={
+          <>
+            <Header />
+            <Hero />
+            <HowItWorks />
+            <ReportWaste />
+            <About />
+            <Impact />
+            <Testimonials />
+            <Contact />
+            <Footer />
+          </>
+        } />
+      </Routes>
+      
+      <main className="overflow-x-hidden bg-black">
         <Suspense  
           fallback={
-           <div className="fixed inset-0 grid place-items-center bg-black text-white">
-            Loading...
-           </div>
+            <div className="fixed inset-0 grid place-items-center bg-black text-white">
+              Loading...
+            </div>
           }
         >
-         <section>
-          
-          {/* <Header />
-          <Hero />
-          <HowItWorks />
-          <ReportWaste />
-          <About />
-          <Impact />
-          <Testimonials />
-          <Contact />
-          <Footer /> */}
-        </section>
-
-     </Suspense>
-     </main> 
-     
-       
-  </>
+        </Suspense>
+      </main>      
+    </>
   );
 }
+
 export default App;
