@@ -4,7 +4,7 @@ import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
 
 const app = express();
-const PORT = 3001;
+const PORT = 3002;
 
 // Log database operations for debugging
 const logDbOperation = (operation, result) => {
