@@ -1,15 +1,14 @@
 
 <?php
-$servername = "0.0.0.0";  // Using 0.0.0.0 instead of localhost for Replit
-$username = "root";       // Default username
-$password = "";           // Default password
-$dbname = "waste_management";
+// Use SQLite instead of MySQL
+$dbname = "../../database.sqlite";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+try {
+    // Create a new PDO connection to SQLite
+    $conn = new PDO("sqlite:$dbname");
+    // Set error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch(PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
 }
 ?>
