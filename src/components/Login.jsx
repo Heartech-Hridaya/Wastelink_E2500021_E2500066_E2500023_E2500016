@@ -11,6 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   const mainRef = useRef(null);
+  const navigate=useNavigate();
   const sceneRef = useRef(null);
   const [progress, setProgress] = useState(0);
   const [formData, setFormData] = useState({
@@ -123,7 +124,7 @@ function App() {
               <input type="date" placeholder="Date of Birth" className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required />
               <input type="email" placeholder="Email" className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required />
               <input type="password" placeholder="Password" className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required />
-              <button type="submit" className="w-full bg-green-600 text-white p-3 rounded-lg font-semibold hover:bg-green-700 transition">Sign Up</button>
+              <button onClick={() => navigate("/Hero")} type="submit" className="w-full bg-green-600 text-white p-3 rounded-lg font-semibold hover:bg-green-700 transition">Sign Up</button>
             </form>
           </div>
         </section>

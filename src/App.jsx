@@ -12,13 +12,19 @@ import Impact from "./components/Impact";
 import Testimonials from "./components/Testimonials";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import { Route, Routes} from 'react-router-dom';
 
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
 
   return (
-    
+    <>
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/Hero" element={<Hero />} />
+
+    </Routes>
       <main  className="overflow-x-hidden bg-black">
         <Suspense  
           fallback={
@@ -28,7 +34,7 @@ function App() {
           }
         >
          <section>
-          <Login />
+          
           {/* <Header />
           <Hero />
           <HowItWorks />
@@ -44,7 +50,7 @@ function App() {
      </main> 
      
        
+  </>
   );
-
 }
 export default App;
