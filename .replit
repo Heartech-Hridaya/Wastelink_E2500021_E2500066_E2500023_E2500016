@@ -8,6 +8,10 @@ channel = "stable-24_05"
 run = ["sh", "-c", "npm run dev"]
 
 [[ports]]
+localPort = 3000
+externalPort = 3002
+
+[[ports]]
 localPort = 3001
 externalPort = 3001
 
@@ -18,3 +22,14 @@ externalPort = 80
 [[ports]]
 localPort = 5174
 externalPort = 3000
+
+[workflows]
+runButton = "Start Server"
+
+[[workflows.workflow]]
+name = "Start Server"
+author = 40329538
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node server.js"
