@@ -18,6 +18,7 @@ export default defineConfig({
     watch: {
       usePolling: true,
     },
+    allowedHosts: ['9bc08cd7-8f75-4fb8-9e57-fb5b8e632151-00-2uj2sdx1yhilj.sisko.replit.dev', 'all'],
   },
   preview: {
     host: '0.0.0.0',
