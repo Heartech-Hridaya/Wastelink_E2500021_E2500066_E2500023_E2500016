@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Login.module.css';
 
-function Login() {
-  const [isLogin, setIsLogin] = useState(true);
+function Login({ isSignUpMode, onClose }) {
+  const [isLogin, setIsLogin] = useState(!isSignUpMode);
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -52,7 +52,8 @@ function Login() {
       
       // Redirect to home page after successful login/signup
       setTimeout(() => {
-        navigate('/Hero');
+        if (onClose) onClose();
+        navigate('/');
       }, 1500);
     } catch (error) {
       setError(error.message);
