@@ -11,22 +11,22 @@ async function viewData() {
     });
     
     console.log('Connected to database');
-
-    // View users
+    
+    // Get users data
     const users = await db.all('SELECT * FROM users');
-    console.log('USERS:');
+    console.log('Users:');
     console.table(users);
-
-    // View reports
+    
+    // Get reports data
     const reports = await db.all('SELECT * FROM reports');
-    console.log('REPORTS:');
+    console.log('Reports:');
     console.table(reports);
-
-    // View contacts
+    
+    // Get contacts data
     const contacts = await db.all('SELECT * FROM contacts');
-    console.log('CONTACTS:');
+    console.log('Contacts:');
     console.table(contacts);
-
+    
     await db.close();
   } catch (error) {
     console.error('Error viewing data:', error);

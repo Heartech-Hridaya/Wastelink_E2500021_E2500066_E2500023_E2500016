@@ -6,6 +6,11 @@ import { open } from 'sqlite';
 const app = express();
 const PORT = 3001;
 
+// Log database operations for debugging
+const logDbOperation = (operation, result) => {
+  console.log(`[DB ${operation}]`, result);
+};
+
 app.use(express.json());
 
 // Setup database connection
@@ -97,9 +102,11 @@ app.get('/api/users', async (req, res) => {
   try {
     const db = await getDb();
     const users = await db.all('SELECT * FROM users');
+    logDbOperation('GET users', users);
     await db.close();
     res.json(users);
   } catch (error) {
+    console.error('Error getting users:', error);
     res.status(500).json({ error: error.message });
   }
 });
@@ -108,9 +115,11 @@ app.get('/api/reports', async (req, res) => {
   try {
     const db = await getDb();
     const reports = await db.all('SELECT * FROM reports');
+    logDbOperation('GET reports', reports);
     await db.close();
     res.json(reports);
   } catch (error) {
+    console.error('Error getting reports:', error);
     res.status(500).json({ error: error.message });
   }
 });
@@ -119,9 +128,11 @@ app.get('/api/contacts', async (req, res) => {
   try {
     const db = await getDb();
     const contacts = await db.all('SELECT * FROM contacts');
+    logDbOperation('GET contacts', contacts);
     await db.close();
     res.json(contacts);
   } catch (error) {
+    console.error('Error getting contacts:', error);
     res.status(500).json({ error: error.message });
   }
 });
