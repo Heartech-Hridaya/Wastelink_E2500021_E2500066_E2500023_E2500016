@@ -9,28 +9,28 @@ function HowItWorks() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl mx-auto">
                 <div className="text-center p-12 rounded-xl bg-gray-800 shadow-lg transition-transform duration-300 hover:translate-y-[-15px] hover:shadow-2xl">
                     <div className="w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center bg-green-700 transition-transform duration-300 hover:scale-110">
-                        <FontAwesomeIcon icon={faCamera} className="text-red-500 text-5xl" />
+                        <FontAwesomeIcon icon={faCamera} className="text-green-200 text-5xl" />
                     </div>
                     <h3 className="text-2xl font-bold text-green-400 mb-4">Report</h3>
                     <p className="text-white text-lg">Take a photo of waste and submit a report with location details.</p>
                 </div>
                 <div className="text-center p-12 rounded-xl bg-gray-800 shadow-lg transition-transform duration-300 hover:translate-y-[-15px] hover:shadow-2xl">
                     <div className="w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center bg-green-700 transition-transform duration-300 hover:scale-110">
-                        <FontAwesomeIcon icon={faTruck} className="text-red-500 text-5xl" />
+                        <FontAwesomeIcon icon={faTruck} className="text-green-200 text-5xl" />
                     </div>
                     <h3 className="text-2xl font-bold text-green-400 mb-4">Collect</h3>
                     <p className="text-white text-lg">Local authorities are notified to collect the reported waste.</p>
                 </div>
                 <div className="text-center p-12 rounded-xl bg-gray-800 shadow-lg transition-transform duration-300 hover:translate-y-[-15px] hover:shadow-2xl">
                     <div className="w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center bg-green-700 transition-transform duration-300 hover:scale-110">
-                        <FontAwesomeIcon icon={faRecycle} className="text-red-500 text-5xl" />
+                        <FontAwesomeIcon icon={faRecycle} className="text-green-200 text-5xl" />
                     </div>
                     <h3 className="text-2xl font-bold text-green-400 mb-4">Recycle</h3>
                     <p className="text-white text-lg">Waste is sorted and processed for reuse and recycling.</p>
                 </div>
                 <div className="text-center p-12 rounded-xl bg-gray-800 shadow-lg transition-transform duration-300 hover:translate-y-[-15px] hover:shadow-2xl">
                     <div className="w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center bg-green-700 transition-transform duration-300 hover:scale-110">
-                        <FontAwesomeIcon icon={faHandsHelping} className="text-red-500 text-5xl" />
+                        <FontAwesomeIcon icon={faHandsHelping} className="text-green-200 text-5xl" />
                     </div>
                     <h3 className="text-2xl font-bold text-green-400 mb-4">Support</h3>
                     <p className="text-white text-lg">Recycled materials help communities and create jobs.</p>

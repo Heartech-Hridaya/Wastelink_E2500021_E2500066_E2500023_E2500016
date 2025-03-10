@@ -17,15 +17,15 @@ function Particles() {
   }, []);
 
   // Generate 10,000 particles with a wider spread
-  const particles = new Float32Array(10000 * 3).map(() => (Math.random() - 0.5) * 50);
+  const particles = new Float32Array(10000 * 4).map(() => (Math.random() - 0.5) * 50);
 
   return (
     <group ref={particlesRef}>
       <Points positions={particles} stride={3} frustumCulled={false}>
         <PointMaterial
           transparent
-          color="#B0B0B0" // Greyish particle color
-          size={0.24}
+          color="black" // Greyish particle color
+          size={0.1}
           sizeAttenuation
           depthWrite={false}
         />

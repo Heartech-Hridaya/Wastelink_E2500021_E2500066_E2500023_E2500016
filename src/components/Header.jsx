@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLeaf } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom"; 
 
 function Header({ openLoginModal, isLoggedIn, userName, handleLogout }) {
     const [isNavOpen, setIsNavOpen] = useState(false);
@@ -8,7 +9,7 @@ function Header({ openLoginModal, isLoggedIn, userName, handleLogout }) {
     const [activeSection, setActiveSection] = useState("#home");
 
     const toggleNav = () => setIsNavOpen(!isNavOpen);
-
+    const navigate=useNavigate();
     const handleNavClick = (e, targetId) => {
         e.preventDefault();
         if (targetId === "#") return;
@@ -72,23 +73,8 @@ function Header({ openLoginModal, isLoggedIn, userName, handleLogout }) {
                     ))}
                 </ul>
                 <div className="hidden md:flex gap-4">
-                    {isLoggedIn ? (
-                        <div className="text-white flex items-center gap-4">
-                            <span>Welcome, {userName}</span>
-                            <button className="bg-red-500 px-4 py-2 rounded-lg text-white hover:bg-red-600" onClick={handleLogout}>
-                                Logout
-                            </button>
-                        </div>
-                    ) : (
-                        <>
-                            <button className="border border-white px-4 py-2 rounded-lg text-white hover:bg-white hover:text-black" onClick={() => openLoginModal(false)}>
-                                Login
-                            </button>
-                            <button className="bg-green-500 px-4 py-2 rounded-lg text-white hover:bg-green-600" onClick={openSignUpModal}>
-                                Sign Up
-                            </button>
-                        </>
-                    )}
+                
+                <button onClick={() => navigate("/Hero")} type="submit" className="w-full bg-green-600 text-white p-3 rounded-lg font-semibold hover:bg-green-700 transition">Log Out</button>
                 </div>
                 <div className="md:hidden flex flex-col gap-2 cursor-pointer" onClick={toggleNav}>
                     <span className={`block w-8 h-1 bg-white transition-transform duration-300 ${isNavOpen ? "rotate-45 translate-y-2" : ""}`} />
@@ -108,20 +94,11 @@ function Header({ openLoginModal, isLoggedIn, userName, handleLogout }) {
                             </a>
                         ))}
                         <div className="flex flex-col gap-4">
-                            {isLoggedIn ? (
-                                <button className="bg-red-500 px-6 py-3 rounded-lg text-white hover:bg-red-600" onClick={handleLogout}>
+                           
+                                <button className="bg-green-900 px-6 py-3 rounded-lg text-white hover:bg-green-900" onClick={handleLogout}>
                                     Logout
                                 </button>
-                            ) : (
-                                <>
-                                    <button className="border border-white px-6 py-3 rounded-lg text-white hover:bg-white hover:text-black" onClick={() => openLoginModal(false)}>
-                                        Login
-                                    </button>
-                                    <button className="bg-green-500 px-6 py-3 rounded-lg text-white hover:bg-green-600" onClick={openSignUpModal}>
-                                        Sign Up
-                                    </button>
-                                </>
-                            )}
+                            
                         </div>
                     </div>
                 )}

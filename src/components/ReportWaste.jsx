@@ -25,47 +25,19 @@ function ReportWaste({ openSuccessModal }) {
         iconAnchor: [12, 41],
     });
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        try {
-            const formData = {
-                name: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).username : "Anonymous",
-                email: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).email : "anonymous@example.com",
-                location: e.target.location.value,
-                message: `Waste Type: ${e.target.wasteType.value}\nDescription: ${e.target.description.value}`,
-            };
-            
-            console.log("Waste report submitted with data:", formData);
-            
-            const response = await fetch('/api/reports', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-            
-            const data = await response.json();
-            
-            if (!response.ok) {
-                throw new Error(data.message || 'Failed to submit report');
-            }
-            
-            // Show success message
-            if (typeof openSuccessModal === 'function') {
-                openSuccessModal();
-            } else {
-                alert('Report submitted successfully!');
-            }
-            
-            // Reset form
-            setImagePreview("");
-            setLocation("");
-            e.target.reset();
-        } catch (error) {
-            console.error('Error submitting report:', error);
-            alert(`Failed to submit report: ${error.message}`);
-        }
+        const formData = {
+            wasteType: e.target.wasteType.value,
+            location: e.target.location.value,
+            description: e.target.description.value,
+            wasteImage: e.target.wasteImage.files[0] ? e.target.wasteImage.files[0].name : "",
+        };
+        console.log("Waste report submitted with data:", formData);
+        openSuccessModal();
+        setImagePreview("");
+        setLocation("");
+        e.target.reset();
     };
 
     const handleImageChange = (e) => {
@@ -312,8 +284,14 @@ function ReportWaste({ openSuccessModal }) {
                                 </div>
                             )}
                         </div>
-                        <button type="submit" className="submit-btn w-full p-4 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all">Submit Report</button>
-                    </form>
+                        <button 
+  type="submit" 
+  className="submit-btn w-full p-4 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all"
+  onClick={() => alert('Waste reported successfully!')}
+>
+  Submit Report
+</button>
+</form>
                 </div>
                 <div className="map-container bg-gray-700 rounded-xl shadow-xl">
                     <div id="map" ref={mapRef} className="h-full w-full rounded-lg" />

@@ -46,14 +46,14 @@ function About() {
     }, []);
 
     return (
-        <section id="about" className="flex items-center gap-16 p-20 bg-white">
+        <section id="about" className="flex items-center gap-16 p-20 bg-green-100">
             <div className="flex-1 max-w-1/2">
                 <h2 className="text-3xl text-left mb-6 relative">
                     Our Mission
                     <div className="absolute bottom-0 left-0 w-1/4 h-1 bg-primary transform-none"></div>
                 </h2>
                 <p className="mb-6 text-light text-lg">
-                    EcoAction connects citizens, authorities, and communities to create a sustainable
+                    Wastelink connects citizens, authorities, and communities to create a sustainable
                     waste management ecosystem that benefits everyone.
                 </p>
                 <p className="mb-6 text-light text-lg">

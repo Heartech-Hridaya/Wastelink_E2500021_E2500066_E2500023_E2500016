@@ -8,18 +8,18 @@ function Testimonials() {
 
     const testimonials = [
         {
-            quote: "EcoAction transformed our community by turning waste into opportunities!",
-            author: "Jane Doe",
+            quote: "Wastelink transformed our community by turning waste into opportunities!",
+            author: "Ramesh Karki",
             role: "Community Leader",
         },
         {
             quote: "The waste reporting system is so easy to use and effective.",
-            author: "John Smith",
+            author: "Sara Shrestha",
             role: "Local Resident",
         },
         {
             quote: "A cleaner environment and jobs for our people—what more could we ask for?",
-            author: "Aisha Khan",
+            author: "Aisha Magar",
             role: "Volunteer",
         },
     ];
@@ -35,7 +35,7 @@ function Testimonials() {
     const testimonial = testimonials[current];
 
     return (
-        <section id="testimonials" className="py-32 px-5 bg-gray-800">
+        <section id="testimonials" className="py-32 px-5" style={{ backgroundColor: 'rgb(114, 137, 169)' }}>
             <h2 className="text-3xl font-semibold text-center text-white mb-10">What People Say</h2>
             <div className="relative max-w-4xl mx-auto overflow-hidden">
                 <div className="testimonial block py-12 bg-dark-gray rounded-xl shadow-xl animate-fadeIn">

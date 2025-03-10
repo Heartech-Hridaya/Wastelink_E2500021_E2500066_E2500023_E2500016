@@ -23,13 +23,7 @@ export default function StaticPage() {
     </div>
              <Header />
              
-              <HowItWorks />
-              <ReportWaste />
-              <About />
-              <Impact />
-              <Testimonials />
-              <Contact />
-              <Footer /> 
+              
   </>
   );
 }
