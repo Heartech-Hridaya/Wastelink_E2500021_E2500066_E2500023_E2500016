@@ -15,10 +15,22 @@ function Header({ openLoginModal, isLoggedIn, userName, handleLogout }) {
 
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
-            window.scrollTo({
-                top: targetElement.offsetTop - 80,
-                behavior: 'smooth',
-            });
+            const headerHeight = document.querySelector('header').offsetHeight;
+
+            // Scroll to the top of the page for "Home" or the respective section
+            if (targetId === '#home') {
+                window.scrollTo({
+                    top: 0, // Scroll to the very top of the page for the "Home" section
+                    behavior: 'smooth',
+                });
+            } else {
+                // Adjust scroll position to account for the header height for other sections
+                window.scrollTo({
+                    top: targetElement.offsetTop - headerHeight, // Adjust for header height
+                    behavior: 'smooth',
+                });
+            }
+
             setIsNavOpen(false);
             setActiveSection(targetId);
         }
@@ -55,30 +67,30 @@ function Header({ openLoginModal, isLoggedIn, userName, handleLogout }) {
                     <FontAwesomeIcon icon={faLeaf} className='mr-2 hover:rotate-12 transition-transform duration-300' />
                     <h1>WasteLink</h1>
                 </div>
-                <ul className={`hidden md:flex gap-8 text-lg font-medium text-white`}> 
-                    {['#home', '#report', '#about', '#impact', '#testimonials', '#contact'].map((link) => (
+                <ul className={`hidden md:flex gap-8 text-lg font-medium text-white`}>
+                    {['#home', '#how-it-works', '#report', '#about', '#impact', '#testimonials', '#contact'].map((link) => (
                         <li key={link}>
-                            <a 
-                                href={link} 
-                                onClick={(e) => handleNavClick(e, link)} 
+                            <a
+                                href={link}
+                                onClick={(e) => handleNavClick(e, link)}
                                 className={`relative transition-colors duration-300 ${activeSection === link ? 'text-green-400' : 'hover:text-green-400'}`}
                             >
-                                {link.replace('#', '').charAt(0).toUpperCase() + link.slice(2)}
+                                {link.replace('#', '').charAt(0).toUpperCase() + link.slice(2).replace('-', ' ')}
                             </a>
                         </li>
                     ))}
                 </ul>
                 <div className='hidden md:flex gap-4'>
                     {isLoggedIn ? (
-                        <button 
-                            onClick={handleLogout} 
+                        <button
+                            onClick={handleLogout}
                             className='bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors duration-300'
                         >
                             Logout
                         </button>
                     ) : (
-                        <button 
-                            onClick={() => openLoginModal(false)} 
+                        <button
+                            onClick={() => openLoginModal(false)}
                             className='bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors duration-300'
                         >
                             Login
@@ -92,27 +104,27 @@ function Header({ openLoginModal, isLoggedIn, userName, handleLogout }) {
                 </div>
                 {isNavOpen && (
                     <div className='fixed inset-0 bg-black bg-opacity-80 flex flex-col items-center justify-center text-white text-2xl space-y-6 md:hidden'>
-                        {['#home', '#report', '#about', '#impact', '#testimonials', '#contact'].map((link) => (
-                            <a 
-                                key={link} 
-                                href={link} 
-                                onClick={(e) => handleNavClick(e, link)} 
+                        {['#home', '#how-it-works', '#report', '#about', '#impact', '#testimonials', '#contact'].map((link) => (
+                            <a
+                                key={link}
+                                href={link}
+                                onClick={(e) => handleNavClick(e, link)}
                                 className='hover:text-green-400'
                             >
-                                {link.replace('#', '').charAt(0).toUpperCase() + link.slice(2)}
+                                {link.replace('#', '').charAt(0).toUpperCase() + link.slice(2).replace('-', ' ')}
                             </a>
                         ))}
                         <div className='flex flex-col gap-4'>
                             {isLoggedIn ? (
-                                <button 
-                                    onClick={handleLogout} 
+                                <button
+                                    onClick={handleLogout}
                                     className='bg-green-600 px-6 py-3 rounded-lg text-white hover:bg-green-700 transition-colors duration-300'
                                 >
                                     Logout
                                 </button>
                             ) : (
-                                <button 
-                                    onClick={() => openLoginModal(false)} 
+                                <button
+                                    onClick={() => openLoginModal(false)}
                                     className='bg-green-600 px-6 py-3 rounded-lg text-white hover:bg-green-700 transition-colors duration-300'
                                 >
                                     Login
