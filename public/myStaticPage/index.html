@@ -16,7 +16,7 @@
     
     <main>
         <div class="vignette"></div>
-        <img src="img/background.png" data-rotation="0" data-speedx="0.21" data-speedy="0.20" data-speedz="0" class="parallax bg-img">
+        <img src="img/background.png" data-rotation="0" data-speedx="0.26" data-speedy="0.34" data-speedz="0" class="parallax bg-img">
         <img src="img/fog_7.png"  data-rotation="0" data-speedx="0.27" data-speedy="0.32" data-speedz="0" class="parallax fog-7">
         <img src="img/mountain_10.png"  data-rotation="0" data-speedx="0.195" data-speedy="0.305" data-speedz="0"
             class="parallax mountain-10">
@@ -28,7 +28,7 @@
         <img src="img/mountain_7.png"  data-rotation="0" data-speedx="0.1" data-speedy="0.1" data-speedz="0" class="parallax mountain-7">
         <div data-speedx="0.07"  data-rotation="0" data-speedy="0.07" data-speedz="0" class="text parallax">
             <h2>Wastelink</h2>
-            <h1>Your waste, Our Tresure</h1>
+            <h1>Your waste, Our Treasure</h1>
         </div>
         <img src="img/mountain_6.png"  data-rotation="0" data-speedx="0.065" data-speedy="0.05" data-speedz="0.05"
             class="parallax mountain-6">
@@ -52,7 +52,76 @@
 
 
     <script src="./app.js"></script>
-   
+<script>
+    // Example script to connect your frontend forms to the PHP backend
+    document.addEventListener('DOMContentLoaded', function() {
+        // Handle signup form
+        const signupForm = document.getElementById('signup-form');
+        if (signupForm) {
+            signupForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(signupForm);
+                
+                fetch('./php/signup.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    if (data.success) {
+                        signupForm.reset();
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        }
+        
+        // Handle report waste form
+        const reportForm = document.getElementById('report-form');
+        if (reportForm) {
+            reportForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(reportForm);
+                
+                fetch('./php/report.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    if (data.success) {
+                        reportForm.reset();
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        }
+        
+        // Handle contact form
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(contactForm);
+                
+                fetch('./php/contact.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    if (data.success) {
+                        contactForm.reset();
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        }
+    });
+</script>
 </body>
 
 </html>

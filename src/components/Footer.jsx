@@ -33,7 +33,7 @@ function Footer() {
                 </div>
             </div>
             <div className="max-w-[1400px] mx-auto mt-8 flex justify-between items-center flex-col gap-6 md:flex-row">
-                <p className="text-primary-light text-base font-medium">© 2025 EcoAction. All Rights Reserved.</p>
+                <p className="text-primary-light text-base font-medium">© 2025 WasteLink. All Rights Reserved.</p>
                 <div className="flex gap-6">
                     <a href="#" className="text-primary-light text-base font-medium hover:text-primary-color hover:translate-y-[-3px] transition-transform">Privacy Policy</a>
                     <a href="#" className="text-primary-light text-base font-medium hover:text-primary-color hover:translate-y-[-3px] transition-transform">Terms of Service</a>

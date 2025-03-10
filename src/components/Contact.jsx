@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import './Contact.css';
 
@@ -74,7 +73,7 @@ function Contact() {
                   </div>
                   <div>
                     <h4 className="text-white font-medium">Location:</h4>
-                    <p>123 Green Street, New York, NY 10001</p>
+                    <p>123 Green Street, Kathmandu</p>
                   </div>
                 </div>
                 
@@ -94,7 +93,7 @@ function Contact() {
                   </div>
                   <div>
                     <h4 className="text-white font-medium">Phone:</h4>
-                    <p>+1 (555) 123-4567</p>
+                    <p>+977-1-4789123</p>
                   </div>
                 </div>
               </div>
