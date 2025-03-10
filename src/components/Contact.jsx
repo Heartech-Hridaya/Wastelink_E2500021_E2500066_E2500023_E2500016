@@ -43,7 +43,7 @@ function Contact() {
       setStatus({ submitting: false, success: true, error: null });
       setFormData({ name: '', email: '', subject: '', message: '' });
       
-      // Reset success message after 5 seconds
+      
       setTimeout(() => {
         setStatus(prev => ({ ...prev, success: false }));
       }, 5000);

@@ -9,14 +9,14 @@ function Particles() {
 
   useEffect(() => {
     gsap.to(particlesRef.current.rotation, {
-      duration: 20, // Slower, smoother rotation
+      duration: 20, 
       y: Math.PI * 2,
       repeat: -1,
       ease: "linear",
     });
   }, []);
 
-  // Generate 10,000 particles with a wider spread
+  
   const particles = new Float32Array(10000 * 4).map(() => (Math.random() - 0.5) * 50);
 
   return (
@@ -24,7 +24,7 @@ function Particles() {
       <Points positions={particles} stride={3} frustumCulled={false}>
         <PointMaterial
           transparent
-          color="black" // Greyish particle color
+          color="black" 
           size={0.1}
           sizeAttenuation
           depthWrite={false}
@@ -44,7 +44,7 @@ export default function AnimatedBackground() {
         left: 0,
         width: "100%",
         height: "100%",
-        background: "#6D9B73" // Aesthetic greenish background color
+        background: "#6D9B73" 
       }}
     >
       <ambientLight intensity={0.3} />

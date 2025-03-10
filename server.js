@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(cors());
 app.use(express.static('dist'));
 
-// Setup database connection
+
 async function getDb() {
   return open({
     filename: './database.sqlite',
@@ -20,7 +20,7 @@ async function getDb() {
   });
 }
 
-// User registration endpoint
+
 app.post('/api/signup', async (req, res) => {
   try {
     const { username, email, password } = req.body;
@@ -31,18 +31,18 @@ app.post('/api/signup', async (req, res) => {
     
     const db = await getDb();
     
-    // Check if user already exists
+    
     const existingUser = await db.get('SELECT * FROM users WHERE email = ?', [email]);
     if (existingUser) {
       await db.close();
       return res.status(400).json({ success: false, message: 'User with this email already exists' });
     }
     
-    // Hash password
+    
     const salt = await bcrypt.genSalt(10);
     const passwordHash = await bcrypt.hash(password, salt);
     
-    // Insert new user
+    
     await db.run(
       'INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)',
       [username, email, passwordHash]
@@ -56,7 +56,7 @@ app.post('/api/signup', async (req, res) => {
   }
 });
 
-// User login endpoint
+
 app.post('/api/login', async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -67,7 +67,7 @@ app.post('/api/login', async (req, res) => {
     
     const db = await getDb();
     
-    // Find user by email
+    
     const user = await db.get('SELECT * FROM users WHERE email = ?', [email]);
     await db.close();
     
@@ -75,13 +75,13 @@ app.post('/api/login', async (req, res) => {
       return res.status(400).json({ success: false, message: 'Invalid credentials' });
     }
     
-    // Compare passwords
+    
     const isMatch = await bcrypt.compare(password, user.password_hash);
     if (!isMatch) {
       return res.status(400).json({ success: false, message: 'Invalid credentials' });
     }
     
-    // Return user info (excluding password)
+    
     const { password_hash, ...userInfo } = user;
     res.json({ success: true, message: 'Login successful', user: userInfo });
   } catch (error) {
@@ -90,7 +90,7 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-// Submit waste report endpoint
+
 app.post('/api/reports', async (req, res) => {
   try {
     const { name, email, location, message } = req.body;
@@ -114,7 +114,7 @@ app.post('/api/reports', async (req, res) => {
   }
 });
 
-// Submit contact form endpoint
+
 app.post('/api/contacts', async (req, res) => {
   try {
     const { name, email, subject, message } = req.body;
@@ -138,7 +138,7 @@ app.post('/api/contacts', async (req, res) => {
   }
 });
 
-// Start server
+
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running at http://0.0.0.0:${PORT}`);
 });

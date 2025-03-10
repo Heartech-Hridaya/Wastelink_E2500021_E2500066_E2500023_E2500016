@@ -5,7 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Scene1 from "../scenes/Scene1";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AnimatedBackground from "./AnimatedBackground"; // Import AnimatedBackground
+import AnimatedBackground from "./AnimatedBackground"; 
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -70,8 +70,8 @@ function App() {
           </div>
         }
       >
-        {/* Render AnimatedBackground at the background */}
-        <AnimatedBackground /> {/* This will run in the background */}
+        
+        <AnimatedBackground /> 
         <section className="relative grid place-items-center h-[100vh]">
           <p className="text-white text-center absolute top-[5%] mx-4 w-fit text-8xl font-bold">
             Waste Link

@@ -93,7 +93,7 @@ function ReportWaste({ openSuccessModal }) {
                             errorMessage += "Unknown error occurred.";
                             break;
                     }
-                    const mockLat = 21.1702; // Surat
+                    const mockLat = 21.1702; 
                     const mockLng = 72.8311;
                     setLocation(`${mockLat.toFixed(6)}, ${mockLng.toFixed(6)}`);
                     console.log("Falling back to mock location (Surat):", { lat: mockLat, lng: mockLng });
@@ -107,13 +107,13 @@ function ReportWaste({ openSuccessModal }) {
                             .bindPopup("Mock Location (Surat)", { className: 'custom-popup' })
                             .openPopup();
                     }
-                    alert(errorMessage); // Updated message here
+                    alert(errorMessage); 
                 },
                 { timeout: 10000, enableHighAccuracy: true, maximumAge: 0 }
             );
         } else {
             console.error("Geolocation API not supported.");
-            const mockLat = 21.1702; // Surat
+            const mockLat = 21.1702; 
             const mockLng = 72.8311;
             setLocation(`${mockLat.toFixed(6)}, ${mockLng.toFixed(6)}`);
             if (mapInstanceRef.current) {

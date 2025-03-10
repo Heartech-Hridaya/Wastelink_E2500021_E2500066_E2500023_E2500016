@@ -14,19 +14,19 @@ function Header({ openLoginModal, isLoggedIn, userName, handleLogout }) {
         if (targetId === '#') return;
 
         const targetElement = document.querySelector(targetId);
-        if (targetElement) {
+        if (targetElement) {    
             const headerHeight = document.querySelector('header').offsetHeight;
 
-            // Scroll to the top of the page for "Home" or the respective section
+            
             if (targetId === '#home') {
                 window.scrollTo({
-                    top: 0, // Scroll to the very top of the page for the "Home" section
+                    top: 0, 
                     behavior: 'smooth',
                 });
             } else {
-                // Adjust scroll position to account for the header height for other sections
+                
                 window.scrollTo({
-                    top: targetElement.offsetTop - headerHeight, // Adjust for header height
+                    top: targetElement.offsetTop - headerHeight, 
                     behavior: 'smooth',
                 });
             }

@@ -4,7 +4,7 @@ import { open } from 'sqlite';
 
 async function setupDatabase() {
   try {
-    // Open SQLite database
+    
     const db = await open({
       filename: './database.sqlite',
       driver: sqlite3.Database
@@ -12,7 +12,7 @@ async function setupDatabase() {
     
     console.log('SQLite database created successfully');
 
-    // Create users table
+    
     await db.exec(`CREATE TABLE IF NOT EXISTS users (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       username TEXT NOT NULL,
@@ -21,7 +21,7 @@ async function setupDatabase() {
     )`);
     console.log('Users table created successfully');
 
-    // Create reports table
+    
     await db.exec(`CREATE TABLE IF NOT EXISTS reports (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name TEXT,
@@ -32,7 +32,7 @@ async function setupDatabase() {
     )`);
     console.log('Reports table created successfully');
 
-    // Create contacts table
+    
     await db.exec(`CREATE TABLE IF NOT EXISTS contacts (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name TEXT,

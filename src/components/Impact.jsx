@@ -1,4 +1,4 @@
-// Impact.jsx
+
 import React from "react";
 import empoweringImage from "../img/Empowering Local Communities.jpg"; 
 import turningImage from "../img/Turning Plastic into Products.jpg";

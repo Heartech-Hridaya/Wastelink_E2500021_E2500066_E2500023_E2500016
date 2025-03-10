@@ -20,7 +20,7 @@ function App() {
   const [user, setUser] = useState(null);
   const location = useLocation();
 
-  // Check if user is logged in
+  
   useEffect(() => {
     const loggedInUser = localStorage.getItem('user');
     if (loggedInUser) {

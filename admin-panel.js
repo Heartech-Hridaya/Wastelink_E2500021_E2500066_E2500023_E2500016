@@ -6,14 +6,14 @@ import { open } from 'sqlite';
 const app = express();
 const PORT = 3002;
 
-// Log database operations for debugging
+
 const logDbOperation = (operation, result) => {
   console.log(`[DB ${operation}]`, result);
 };
 
 app.use(express.json());
 
-// Setup database connection
+
 async function getDb() {
   return open({
     filename: './database.sqlite',
@@ -21,7 +21,7 @@ async function getDb() {
   });
 }
 
-// Routes
+
 app.get('/', (req, res) => {
   res.send(`
     <html>
@@ -45,17 +45,17 @@ app.get('/', (req, res) => {
         <script>
           async function fetchData() {
             try {
-              // Fetch users
+              
               const usersResponse = await fetch('/api/users');
               const users = await usersResponse.json();
               document.getElementById('users').innerHTML = createTable('Users', users);
               
-              // Fetch reports
+              
               const reportsResponse = await fetch('/api/reports');
               const reports = await reportsResponse.json();
               document.getElementById('reports').innerHTML = createTable('Reports', reports);
               
-              // Fetch contacts
+              
               const contactsResponse = await fetch('/api/contacts');
               const contacts = await contactsResponse.json();
               document.getElementById('contacts').innerHTML = createTable('Contacts', contacts);
@@ -70,13 +70,13 @@ app.get('/', (req, res) => {
             const headers = Object.keys(data[0]);
             let table = \`<h2>\${title}</h2><table><tr>\`;
             
-            // Add headers
+            
             headers.forEach(header => {
               table += \`<th>\${header}</th>\`;
             });
             table += '</tr>';
             
-            // Add rows
+            
             data.forEach(row => {
               table += '<tr>';
               headers.forEach(header => {
@@ -89,7 +89,7 @@ app.get('/', (req, res) => {
             return table;
           }
           
-          // Load data on page load
+          
           fetchData();
         </script>
       </body>
@@ -97,7 +97,7 @@ app.get('/', (req, res) => {
   `);
 });
 
-// API endpoints
+
 app.get('/api/users', async (req, res) => {
   try {
     const db = await getDb();
@@ -137,7 +137,7 @@ app.get('/api/contacts', async (req, res) => {
   }
 });
 
-// Start server
+
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Admin panel running at http://0.0.0.0:${PORT}`);
 });

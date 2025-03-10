@@ -1,10 +1,9 @@
-
 import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
 
 async function addTestData() {
   try {
-    // Open SQLite database
+    
     const db = await open({
       filename: './database.sqlite',
       driver: sqlite3.Database
@@ -12,7 +11,7 @@ async function addTestData() {
     
     console.log('Connected to database');
 
-    // Add test user
+    
     await db.run(
       `INSERT INTO users (username, email, password_hash) 
        VALUES (?, ?, ?)`,
@@ -20,7 +19,7 @@ async function addTestData() {
     );
     console.log('Test user added');
 
-    // Add test report
+    
     await db.run(
       `INSERT INTO reports (name, email, location, message) 
        VALUES (?, ?, ?, ?)`,
@@ -28,7 +27,7 @@ async function addTestData() {
     );
     console.log('Test report added');
 
-    // Add test contact
+    
     await db.run(
       `INSERT INTO contacts (name, email, subject, message) 
        VALUES (?, ?, ?, ?)`,
